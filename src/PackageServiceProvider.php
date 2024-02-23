@@ -1,4 +1,5 @@
 <?php
+
 namespace ProcessMaker\Package\Parssconfig;
 
 use Illuminate\Support\Facades\Route;
@@ -33,9 +34,10 @@ class PackageServiceProvider extends ServiceProvider
     public function boot()
     {
         //Register commands
-         $this->commands([
+        $this->commands([
             Console\Commands\Install::class,
             Console\Commands\Uninstall::class,
+            Console\Commands\ShowItems::class
         ]);
 
         if ($this->app->runningInConsole()) {
@@ -59,8 +61,9 @@ class PackageServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'parssconfig');
 
         $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/processmaker/packages/parssconfig'),
+            __DIR__ . '/../public' => public_path('vendor/processmaker/packages/parssconfig'),
         ], 'parssconfig');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         $this->app['events']->listen(PackageEvent::class, PackageListener::class);
 
