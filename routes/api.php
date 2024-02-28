@@ -14,4 +14,5 @@ Route::group([],function (){
     Route::get('ParserConfig/search/{value}',[ParserConfigController::class,'search']);
     Route::get('ParserConfig/all',[ParserConfigController::class,'all']);
     Route::post('ParserConfig/store',[ParserConfigController::class,'store']);
+    Route::get('ParserConfig/ShowConditionalHide',[ParserConfigController::class,'ShowConditionalHide']);
 });

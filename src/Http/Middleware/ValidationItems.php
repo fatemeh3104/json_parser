@@ -3,25 +3,29 @@
 namespace ProcessMaker\Package\Parssconfig\Http\Middleware;
 
 use Closure;
-use Lavary\Menu\Facade as Menu;
-use ProcessMaker\Models\Process;
-use ProcessMaker\Models\Screen;
-use Illuminate\Support\Facades\DB;
+use ProcessMaker\Models\FormalExpression;
+use ProcessMaker\Package\Parssconfig\Helppers\Parser;
 use ProcessMaker\Package\Parssconfig\Models\ItemsValidation;
 use ProcessMaker\Package\Parssconfig\Models\ScreenItems;
-
+use processmaker\parssconfig\Patterns\Strategies\RequiredValidation;
+use ProcessMaker\WebServices\ExpressionEvaluator;
 
 class ValidationItems
 {
-
     public function handle($request, Closure $next)
     {
+
         $task = $request->task;
         $screenVersion = $task->getScreenVersion();
         $task->screen = $screenVersion ? $screenVersion->toArray() : null;
         $screen = $task->screen;
         $screen_items = ScreenItems::where('screen_id', '=', $screen['screen_id'])->get();
         foreach ($screen_items as $screen_item) {
+            if (isset($screen_item['conditionalHide'])){
+                if (!ExpressionEvaluator::evaluate('feel',$screen_item['conditionalHide'],[])){
+                    break;
+                }
+            }
             $items_validation = ItemsValidation::where('screen_item_id', '=', $screen_item['id'])->get();
             if (isset($items_validation[0])) {
                 foreach ($request->data as $key => $data) {
@@ -56,7 +60,8 @@ class ValidationItems
                 }
             }
         }
-            dd(4444);
+        echo ("ok");
+        dd(4444);
         return $next($request);
 
     }

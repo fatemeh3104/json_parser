@@ -1,6 +1,6 @@
 <?php
 
-namespace processmaker\Parssconfig\Patterns\Strategies;
+namespace processmaker\parssconfig\Patterns\Strategies;
 
 
 class RequiredValidation implements ValidationStrategy

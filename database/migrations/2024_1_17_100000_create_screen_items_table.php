@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->unsignedInteger('screen_id');
+            $table->string('conditionalHide')->nullable();
             $table->foreign('screen_id')->references('id')->on('screens')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
             $table->softDeletes();
