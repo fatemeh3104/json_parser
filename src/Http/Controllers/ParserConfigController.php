@@ -28,41 +28,8 @@ class ParserConfigController
         try {
             $screens = Screen::all()->where('type', '=', 'FORM');
             foreach ($screens as $screen) {
-                $items = [];
-                if (isset($screen->config)) {
-                    $parser = new Parser();
-                    $items = $parser->Parser($screen->config, []);
-                    foreach ($items as $item) {
-                        $screen_item = new ScreenItems();
-                        if (isset($item['name'])) {
-                            $screen_item['name'] = $item['name'];
-                        } else {
-                            $screen_item['name'] = "anonymous";
-                        }
-                        if (isset($item['conditionalHide'])) {
-                            $screen_item['conditionalHide'] = $item['conditionalHide'];
-                        }
-                        $screen_item['screen_id'] = $screen->id;
-                        $screen_item->save();
-                        if (isset($item['validation'])) {
-                            foreach ($item['validation'] as $validation) {
-                                $item_validation = new ItemsValidation();
-                                if (isset($validation['field'])) {
-                                    $item_validation['type'] = $validation['field'];
-                                } else {
-                                    $item_validation['type'] = $validation['value'];
-                                }
-                                if (isset($validation['configs'])) {
-                                    $item_validation['validation'] = $validation['configs'];
-                                } else {
-                                    $item_validation['validation'] = null;
-                                }
-                                $item_validation['screen_item_id'] = $screen_item->id;
-                                $item_validation->save();
-                            }
-                        }
-                    }
-                }
+                $parser = new Parser();
+                $parser->StoreItemsAndValidations($screen);
             }
             return response()->json('save');
 
@@ -123,9 +90,6 @@ class ParserConfigController
 
     }
 
-    public function edit($screen_id)
-    {
 
-    }
 
 }

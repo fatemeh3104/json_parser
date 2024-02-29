@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use ProcessMaker\Package\Packages\Events\PackageEvent;
 use ProcessMaker\Package\Parssconfig\Http\Middleware\AddToMenus;
 use ProcessMaker\Package\Parssconfig\Http\Middleware\ValidationItems;
+use ProcessMaker\Package\Parssconfig\Http\Middleware\ValidationUpdate;
 use ProcessMaker\Package\Parssconfig\Listeners\PackageListener;
 
 class PackageServiceProvider extends ServiceProvider
@@ -60,6 +61,7 @@ class PackageServiceProvider extends ServiceProvider
         }
 //        $kernel->pushMiddleware(ValidationItems::class);
         app('router')->aliasMiddleware('ValidationItems', ValidationItems::class);
+        app('router')->aliasMiddleware('ValidationUpdate', ValidationUpdate::class);
         $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'parssconfig');
 
         $this->publishes([
