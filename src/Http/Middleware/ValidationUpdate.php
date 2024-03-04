@@ -22,8 +22,8 @@ class ValidationUpdate
 
     public function terminate($request, $response)
     {
-
         $screen = $request->route('screen');
+        Log::debug("screen".$screen);
         $screen_items = ScreenItems::all()->where('screen_id', '=', $screen->id);
         foreach ($screen_items as $screen_item) {
             $item_validations = ItemsValidation::all()->where('screen_item_id', '=', $screen_item->id);

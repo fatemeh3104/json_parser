@@ -2,10 +2,12 @@
 
 namespace ProcessMaker\Package\Parssconfig\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use ProcessMaker\Models\ProcessMakerModel;
 
 class ScreenItems extends ProcessMakerModel
 {
+    use HasFactory;
     protected $table = 'screen_items';
 
     protected $fillable = [

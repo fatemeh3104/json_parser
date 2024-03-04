@@ -14,7 +14,8 @@
     "autoload": {
         "psr-4": {
             "ProcessMaker\\Package\\Parssconfig\\": "src",
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Factories\\": "database/Factories"
         }
     },
     "extra": {

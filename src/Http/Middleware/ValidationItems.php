@@ -20,6 +20,7 @@ class ValidationItems
     {
         $task = $request->task;
         $screenVersion = $task->getScreenVersion();
+        dd($task,$screenVersion);
         $task->screen = $screenVersion ? $screenVersion->toArray() : null;
         $screen = $task->screen;
         $screen_items = ScreenItems::where('screen_id', '=', $screen['screen_id'])->get();
@@ -34,7 +35,6 @@ class ValidationItems
                 foreach ($request->data as $key => $data) {
                     if ($key == $screen_item['name']) {
                         foreach ($items_validation as $item_validation) {
-                            echo $item_validation['type'];
                             switch ($item_validation['type']) {
                                 case "required":
                                     $validation = new RequiredValidation();
