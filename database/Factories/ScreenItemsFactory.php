@@ -62,7 +62,6 @@ class ScreenItemsFactory extends Factory
                 'items' => $subItems,
             ];
         }
-        dd($items);
         return $items;
     }
 

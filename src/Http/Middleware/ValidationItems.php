@@ -20,19 +20,31 @@ class ValidationItems
     {
         $task = $request->task;
         $screenVersion = $task->getScreenVersion();
-        dd($task,$screenVersion);
         $task->screen = $screenVersion ? $screenVersion->toArray() : null;
         $screen = $task->screen;
         $screen_items = ScreenItems::where('screen_id', '=', $screen['screen_id'])->get();
+        $items_name = [];
+        foreach ($screen_items as $screen_item) {
+            $items_name[] = $screen_item->name;
+        }
+        $items = $request->data;
+        unset($items['_user']);
+        unset($items['_request']);
+        foreach ($items as $key => $value) {
+            if (!(in_array($key, $items_name))) {
+                return response()->json('not valid ' . $key . ' is not a item from this form ', 422);
+            }
+        }
         foreach ($screen_items as $screen_item) {
             if (isset($screen_item['conditionalHide'])) {
                 if (!ExpressionEvaluator::evaluate('feel', $screen_item['conditionalHide'], [])) {
                     continue;
                 }
             }
+
             $items_validation = ItemsValidation::where('screen_item_id', '=', $screen_item['id'])->get();
             if (isset($items_validation[0])) {
-                foreach ($request->data as $key => $data) {
+                foreach ($items as $key => $data) {
                     if ($key == $screen_item['name']) {
                         foreach ($items_validation as $item_validation) {
                             switch ($item_validation['type']) {
@@ -54,6 +66,7 @@ class ValidationItems
                                         return $validation->validate($data, $item_validation['validation']);
                                     break;
                                 case "alpha":
+
                                     $validation = new AlphaValidation();
                                     if ($validation->validate($data))
                                         return $validation->validate($data);
@@ -67,11 +80,11 @@ class ValidationItems
                             }
                         }
                     }
+
                 }
             }
         }
         return $next($request);
-
     }
 
 //    public function RequiredValidation($value)

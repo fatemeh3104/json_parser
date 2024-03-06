@@ -116,56 +116,62 @@ class StoreAndUpdateValidationTest extends TestCase
     public function test_backend_validation_for_form_screen()
     {
         $jsons = File::allFiles('storage/app/Test/jsons');
+        $user = User::factory()->create(['is_administrator' => true]);
+        $this->actingAs($user, 'api');
         $result = [];
+
         foreach ($jsons as $json) {
             //create Screen
             $filename = basename($json);
             $json = File::get($json);
             $contents = json_decode($json);
             $config = $contents->screens[0]->config;
-            $user = User::factory()->create();
-            $this->actingAs($user, 'api');
             $screen = Screen::factory()->create();
             $screen['type'] = "form";
             $screen['config'] = $config;
             $screen->save();
+            $screen_version = ScreenVersion::factory()->create([
+                'screen_id' => $screen->id,
+                'config' => $config,
+                'status' => "ACTIVE"
+            ]);
             //create process
-            $process = Process::factory()->create();
             $bpmn = file_get_contents(storage_path('app/Test/xml/bpmnProcess.xml'));
-            $process->bpmn = $bpmn;
-            $process->save();
-            //request
+            $bpmn = str_replace('test_screen_id', $screen->id, $bpmn);
+            $bpmn = str_replace('test_screen_id', $screen->id, $bpmn);
+            $process = Process::factory()->create(['bpmn' => $bpmn]);
+            $element_id = Str::betweenFirst($bpmn, 'task id="', '" name');
 
-            $request = ProcessRequest::factory()->create();
-            $request['process_id'] = $process->id;
-            $request->save();
-            $request_token = ProcessRequestToken::factory()->create();
-            $request_token['process_id']= $process->id;
-            $request_token->save();
-//        dd($process['name'],Process::all('bpmn'));
-            $xml = strpos($bpmn, "pm:screenRef=");
-            $screen_id = $bpmn[$xml + 14];
-            $contents = file_get_contents(storage_path('app/Test/jsons/screen.json'));
+            //create Request
+            $process_request = ProcessRequest::factory()->create(['process_id' => $process->id, 'user_id' => $user->id]);
+            //create Task
+            $request_token = ProcessRequestToken::factory()->create([
+                'status' => 'ACTIVE',
+                'process_id' => $process->id,
+                'process_request_id' => $process_request->id,
+                'user_id' => $user->id,
+                'element_id' => $element_id
+            ]);
+            $contents = file_get_contents(storage_path('app/Test/jsons/A-Screen.json'));
             $contents = json_decode($contents);
             $this->actingAs($user, 'api');
             $this->put('http://localhost:8080/api/1.0/screens/1', $screen->toArray());
-            $user = User::factory()->create();
-            $user = $user->getAttributes();
-            $request = $request->getAttributes();
-//            $event = $this->post('http://localhost:8080/api/1.0/process_events',['process'=>$process->id]);
+
             $x = [
                 "status" => "COMPLETED",
                 "data" => [
-                    "_user" => $user,
-                    "_request" => $request
-                ],
-                "screen_items"
+                    "_user" => $user->getAttributes(),
+                    "_request" => $process_request->getAttributes(),
+                    "b_form_component_1" => ['lll'],
+                    "form_text_area_1" => 12
+                ]
             ];
+
             $response = $this->put('http://localhost:8080/api/1.0/tasks/1', $x);
-            dd(123123);
             dd($response);
 //        $response = $this->put(,$x);
         }
+
         dd(Screen::all());
 
     }
