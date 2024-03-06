@@ -27,6 +27,7 @@ class ValidationItems
         foreach ($screen_items as $screen_item) {
             $items_name[] = $screen_item->name;
         }
+
         $items = $request->data;
         unset($items['_user']);
         unset($items['_request']);
@@ -35,13 +36,18 @@ class ValidationItems
                 return response()->json('not valid ' . $key . ' is not a item from this form ', 422);
             }
         }
+        foreach ($items_name as $item_name){
+            if (!(in_array($item_name,$items))){
+                return response()->json('not valid some of the values that were supposed to be sent were not delivered. ', 422);
+            }
+        }
+
         foreach ($screen_items as $screen_item) {
             if (isset($screen_item['conditionalHide'])) {
                 if (!ExpressionEvaluator::evaluate('feel', $screen_item['conditionalHide'], [])) {
                     continue;
                 }
             }
-
             $items_validation = ItemsValidation::where('screen_item_id', '=', $screen_item['id'])->get();
             if (isset($items_validation[0])) {
                 foreach ($items as $key => $data) {
