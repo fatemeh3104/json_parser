@@ -70,8 +70,8 @@ class BackendTaskValidationTest extends TestCase
                 'user_id' => $user->id,
                 'element_id' => $element_id
             ]);
-            $contents = file_get_contents(storage_path('app/Test/jsons/A-Screen.json'));
-            $contents = json_decode($contents);
+//            $contents = file_get_contents(storage_path('app/Test/jsons/A-Screen.json'));
+//            $contents = json_decode($contents);
             $this->actingAs($user, 'api');
             $this->put('http://localhost:8080/api/1.0/screens/1', $screen->toArray());
 

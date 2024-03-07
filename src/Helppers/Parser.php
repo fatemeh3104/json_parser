@@ -41,7 +41,8 @@ class Parser
                 $screen_item = new ScreenItems();
                 if (isset($item['name'])) {
                     $screen_item['name'] = $item['name'];
-                } else {
+                }
+                else {
                     $screen_item['name'] = "anonymous";
                 }
                 if (isset($item['conditionalHide'])) {

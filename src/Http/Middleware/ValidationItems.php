@@ -27,18 +27,12 @@ class ValidationItems
         foreach ($screen_items as $screen_item) {
             $items_name[] = $screen_item->name;
         }
-
         $items = $request->data;
         unset($items['_user']);
         unset($items['_request']);
         foreach ($items as $key => $value) {
             if (!(in_array($key, $items_name))) {
                 return response()->json('not valid ' . $key . ' is not a item from this form ', 422);
-            }
-        }
-        foreach ($items_name as $item_name){
-            if (!(in_array($item_name,$items))){
-                return response()->json('not valid some of the values that were supposed to be sent were not delivered. ', 422);
             }
         }
 
