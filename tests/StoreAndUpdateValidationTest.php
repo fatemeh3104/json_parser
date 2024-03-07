@@ -3,7 +3,6 @@
 namespace Tests\Parssconfig;
 
 use Database\Factories\ProcessMaker\Models\ProcessFactory;
-use Factories\ScreenItemsFactory\ScreenItemsFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use ProcessMaker\Models\Process;
