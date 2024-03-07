@@ -18,11 +18,12 @@ class ValidationItems
 {
     public function handle($request, Closure $next)
     {
-        dd(111111111111111111111111110);
+        //find screen from task
         $task = $request->task;
         $screenVersion = $task->getScreenVersion();
         $task->screen = $screenVersion ? $screenVersion->toArray() : null;
         $screen = $task->screen;
+        //fetch screen items from DB
         $screen_items = ScreenItems::where('screen_id', '=', $screen['screen_id'])->get();
         $items_name = [];
         foreach ($screen_items as $screen_item) {
@@ -31,18 +32,21 @@ class ValidationItems
         $items = $request->data;
         unset($items['_user']);
         unset($items['_request']);
+        //check do not send items is not in form
         foreach ($items as $key => $value) {
             if (!(in_array($key, $items_name))) {
                 return response()->json('not valid ' . $key . ' is not a item from this form ', 422);
             }
         }
-
+        //check validations for item
         foreach ($screen_items as $screen_item) {
+            // when item is hide do not validation
             if (isset($screen_item['conditionalHide'])) {
                 if (!ExpressionEvaluator::evaluate('feel', $screen_item['conditionalHide'], [])) {
                     continue;
                 }
             }
+            //get all items validation
             $items_validation = ItemsValidation::where('screen_item_id', '=', $screen_item['id'])->get();
             if (isset($items_validation[0])) {
                 foreach ($items as $key => $data) {
@@ -88,80 +92,4 @@ class ValidationItems
         return $next($request);
     }
 
-//    public function RequiredValidation($value)
-//    {
-//        if ($value == null) {
-//            return response()->json('not valid (required) ', 422);
-//        }
-//    }
-//
-//    public function AlphaValidation($value)
-//    {
-//        if (gettype($value) == 'array') {
-//            foreach ($value as $item) {
-//                if (!ctype_alpha($item)) {
-//                    return response()->json('not valid (AlphaValidation)', 422);
-//                }
-//            }
-//        } else {
-//            if (!ctype_alpha($value)) {
-//                return response()->json('not valid (AlphaValidation)', 422);
-//            }
-//        }
-//    }
-//
-//    public function MaxValidation($value, $rule)
-//    {
-//        if (gettype($value) == 'array') {
-//            foreach ($value as $item) {
-//                $charCount = mb_strlen($item, 'UTF-8');
-//                if ($charCount > $rule[0]['value']) {
-//                    return response()->json('not valid (MaxValidation) ', 422);
-//                }
-//            }
-//        } else {
-//            $charCount = mb_strlen($value, 'UTF-8');
-//            if ($charCount > $rule[0]['value']) {
-//                return response()->json('not valid ', 422);
-//            }
-//        }
-//
-//    }
-//
-//    public function MinValidation($value, $rule)
-//    {
-//        if (gettype($value) == 'array') {
-//            foreach ($value as $item) {
-//                $charCount = mb_strlen($item, 'UTF-8');
-//                if ($charCount < $rule[0]['value']) {
-//                    return response()->json('not valid (MinValidation) ', 422);
-//                }
-//            }
-//        } else {
-//            $charCount = mb_strlen($value, 'UTF-8');
-//            if ($charCount < $rule[0]['value']) {
-//                return response()->json('not valid ', 422);
-//            }
-//        }
-//
-//    }
-
-//    public function BetweenValidation($value, $rule)
-//    {
-//        $min = $rule[0]['value'];
-//        $max = $rule[1]['value'];
-//        if (gettype($value) == 'array') {
-//            foreach ($value as $item) {
-//
-//                if ($value < $min || $value > $max) {
-//                    return response()->json('not valid (BetweenValidation)', 422);
-//                }
-//            }
-//        } else {
-//
-//            if ($value < $min || $value > $max) {
-//                return response()->json('not valid (BetweenValidation) ', 422);
-//            }
-//        }
-//    }
 }

@@ -14,5 +14,7 @@ Route::group([],function (){
     Route::post('ParserConfig/store',[ParserConfigController::class,'store']);
     Route::get('ParserConfig/ShowConditionalHide',[ParserConfigController::class,'ShowConditionalHide']);
 });
-Route::put('tasks/{task}', [TaskController::class, 'update'])->name('tasks.update')->middleware(ValidationItems::class);
+//Route::put('tasks/{task}', function(){
+//    dd('test');
+//})->name('api.tasks.update');
 

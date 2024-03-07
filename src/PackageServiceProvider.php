@@ -13,16 +13,14 @@ use ProcessMaker\Package\Parssconfig\Listeners\PackageListener;
 class PackageServiceProvider extends ServiceProvider
 {
 
-    // Assign the default namespace for our controllers
-    protected $namespace = '\ProcessMaker\Package\Parssconfig\Http\Controllers';
-
     /**
      * If your plugin will provide any services, you can register them here.
      * See: https://laravel.com/docs/5.6/providers#the-register-method
      */
     public function register()
     {
-        // Nothing is registered at this time
+
+
     }
 
     /**
@@ -41,23 +39,14 @@ class PackageServiceProvider extends ServiceProvider
             Console\Commands\Uninstall::class,
             Console\Commands\ShowItems::class
         ]);
-
-        if ($this->app->runningInConsole()) {
-            require(__DIR__ . '/../routes/console.php');
-        } else {
-            // Assigning to the web middleware will ensure all other middleware assigned to 'web'
-            // will execute. If you wish to extend the user interface, you'll use the web middleware
-            Route::middleware('web')
-                ->namespace($this->namespace)
-                ->group(__DIR__ . '/../routes/web.php');
+        Route::middleware('web')
+            ->group(__DIR__ . '/../routes/web.php');
 
 
-            Route::middleware('api')
-                ->namespace($this->namespace)
-                ->prefix('api/1.0')
-                ->group(__DIR__ . '/../routes/api.php');
+        Route::middleware('api')
+            ->prefix('api/1.0')
+            ->group(__DIR__ . '/../routes/api.php');
 
-        }
 //        $kernel->pushMiddleware(ValidationItems::class);
         app('router')->aliasMiddleware('ValidationItems', ValidationItems::class);
         app('router')->aliasMiddleware('ValidationUpdate', ValidationUpdate::class);

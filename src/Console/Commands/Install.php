@@ -4,6 +4,8 @@ namespace ProcessMaker\Package\Parssconfig\Console\Commands;
 
 use Artisan;
 use ProcessMaker\Console\PackageInstallCommand;
+use ProcessMaker\Models\Screen;
+use ProcessMaker\Package\Parssconfig\Helppers\Parser;
 
 class Install extends PackageInstallCommand
 {
@@ -12,7 +14,7 @@ class Install extends PackageInstallCommand
      *
      * @var string
      */
-    protected $signature = 'parssconfig:install';
+    protected $signature = 'parssconfig:install{--first : Install for the first time}';
 
     /**
      * The console command description.
@@ -54,8 +56,18 @@ class Install extends PackageInstallCommand
      */
     public function handle()
     {
+        $firstTime = $this->option('first');
+        if ($firstTime){
+            $screens = Screen::all()->where('type', '=', 'FORM');
+            foreach ($screens as $screen) {
+                $parser = new Parser();
+                $parser->StoreItemsAndValidations($screen);
+            }
+        }
         parent::handle();
-        $this->info('Parssconfig has been installed');
+        $this->info('Pars config has been installed');
 
     }
+    
 }
+

@@ -14,7 +14,6 @@ class ParserConfigController
 {
     public function index(Request $request)
     {
-
         $field = $request->get('field');
         $inputJson = $request->getContent();
         $inputArray = json_decode($inputJson, true);
