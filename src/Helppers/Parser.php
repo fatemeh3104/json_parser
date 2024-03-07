@@ -38,7 +38,7 @@ class Parser
     }
 
     //store items and items validation in data base
-    public function StoreItemsAndValidations($screen): void
+    public function StoreItemsAndValidations($screen)
     {
         $items = [];
         if (isset($screen->config)) {
@@ -78,6 +78,8 @@ class Parser
                 }
             }
         }
+
+
     }
 
 }

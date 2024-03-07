@@ -48,6 +48,7 @@ class ValidationItems
             }
             //get all items validation
             $items_validation = ItemsValidation::where('screen_item_id', '=', $screen_item['id'])->get();
+            //validate input
             if (isset($items_validation[0])) {
                 foreach ($items as $key => $data) {
                     if ($key == $screen_item['name']) {

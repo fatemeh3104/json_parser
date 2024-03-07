@@ -57,17 +57,28 @@ class Install extends PackageInstallCommand
     public function handle()
     {
         $firstTime = $this->option('first');
-        if ($firstTime){
+        if ($firstTime) {
+            $data = [];
             $screens = Screen::all()->where('type', '=', 'FORM');
             foreach ($screens as $screen) {
-                $parser = new Parser();
-                $parser->StoreItemsAndValidations($screen);
+                try {
+                    $parser = new Parser();
+                    $parser->StoreItemsAndValidations($screen);
+                } catch (\Exception $e) {
+                    $data[] = $screen->id;
+                    $data = array_merge($data, $e);
+                }
+            }
+            if ($data === []) {
+                $this->info('items and validations store successfully');
+            } else {
+                $this->table(['screen name', 'screen id'], $data);
             }
         }
         parent::handle();
         $this->info('Pars config has been installed');
 
     }
-    
+
 }
 
