@@ -7,7 +7,7 @@ use processmaker\parssconfig\Patterns\Strategies\ValidationStrategy;
 
 class AlphaValidation implements ValidationStrategy
 {
-    public function validate($value, $rule = "")
+    public function validate($value, $rule = null)
     {
         if (gettype($value) == 'array') {
             foreach ($value as $item) {

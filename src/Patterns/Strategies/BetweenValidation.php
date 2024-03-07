@@ -8,7 +8,7 @@ use processmaker\parssconfig\Patterns\Strategies\ValidationStrategy;
 
 class BetweenValidation implements ValidationStrategy
 {
-    public function validate($value,Array $rule)
+    public function validate($value,Array $rule=null)
     {
         $min = $rule[0]['value'];
         $max = $rule[1]['value'];

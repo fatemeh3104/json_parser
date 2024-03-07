@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use ProcessMaker\Http\Controllers\Api\ScreenController;
 use ProcessMaker\Http\Controllers\TaskController;
 use ProcessMaker\Package\Parssconfig\Http\Controllers\ParssconfigController;
 use ProcessMaker\Package\Parssconfig\Http\Middleware\ValidationItems;
@@ -14,7 +15,6 @@ Route::group([],function (){
     Route::post('ParserConfig/store',[ParserConfigController::class,'store']);
     Route::get('ParserConfig/ShowConditionalHide',[ParserConfigController::class,'ShowConditionalHide']);
 });
-//Route::put('tasks/{task}', function(){
-//    dd('test');
-//})->name('api.tasks.update');
+Route::put('tasks/{task}', [TaskController::class, 'update'])->name('tasks.update')->middleware('ValidationItems');
+Route::put('screens/{screen}', [ScreenController::class, 'update'])->name('screens.update')->middleware(['ValidationUpdate']);
 

@@ -37,7 +37,6 @@ class PackageServiceProvider extends ServiceProvider
         $this->commands([
             Console\Commands\Install::class,
             Console\Commands\Uninstall::class,
-            Console\Commands\ShowItems::class
         ]);
         Route::middleware('web')
             ->group(__DIR__ . '/../routes/web.php');
