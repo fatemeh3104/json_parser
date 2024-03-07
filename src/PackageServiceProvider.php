@@ -57,7 +57,6 @@ class PackageServiceProvider extends ServiceProvider
                 ->prefix('api/1.0')
                 ->group(__DIR__ . '/../routes/api.php');
 
-            Route::pushMiddlewareToGroup('web', AddToMenus::class);
         }
 //        $kernel->pushMiddleware(ValidationItems::class);
         app('router')->aliasMiddleware('ValidationItems', ValidationItems::class);
