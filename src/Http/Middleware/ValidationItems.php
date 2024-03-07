@@ -18,6 +18,7 @@ class ValidationItems
 {
     public function handle($request, Closure $next)
     {
+        dd(111111111);
         //find screen from task
         $task = $request->task;
         $screenVersion = $task->getScreenVersion();

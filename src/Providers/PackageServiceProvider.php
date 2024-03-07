@@ -1,6 +1,6 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig;
+namespace ProcessMaker\Package\Parssconfig\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -9,6 +9,8 @@ use ProcessMaker\Package\Parssconfig\Http\Middleware\AddToMenus;
 use ProcessMaker\Package\Parssconfig\Http\Middleware\ValidationItems;
 use ProcessMaker\Package\Parssconfig\Http\Middleware\ValidationUpdate;
 use ProcessMaker\Package\Parssconfig\Listeners\PackageListener;
+use ProcessMaker\Package\Parssconfig\Console\Commands\Install;
+use ProcessMaker\Package\Parssconfig\Console\Commands\Uninstall;
 
 class PackageServiceProvider extends ServiceProvider
 {
@@ -33,18 +35,20 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //Register commands
         $this->commands([
-            Console\Commands\Install::class,
-            Console\Commands\Uninstall::class,
+            Install::class,
+            Uninstall::class,
         ]);
-        Route::middleware('web')
-            ->group(__DIR__ . '/../routes/web.php');
+        $this->app->register(RouteServiceProvider::class);
+        //Register commands
 
-
-        Route::middleware('api')
-            ->prefix('api/1.0')
-            ->group(__DIR__ . '/../routes/api.php');
+//        Route::middleware('web')
+//            ->group(__DIR__ . '/../routes/web.php');
+//
+//
+//        Route::middleware('api')
+//            ->prefix('api/1.0')
+//            ->group(__DIR__ . '/../routes/api.php');
 
 //        $kernel->pushMiddleware(ValidationItems::class);
         app('router')->aliasMiddleware('ValidationItems', ValidationItems::class);
@@ -54,7 +58,7 @@ class PackageServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../public' => public_path('vendor/processmaker/packages/parssconfig'),
         ], 'parssconfig');
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
 
         $this->app['events']->listen(PackageEvent::class, PackageListener::class);
 

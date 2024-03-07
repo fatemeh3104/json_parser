@@ -21,7 +21,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "ProcessMaker\\Package\\Parssconfig\\PackageServiceProvider"
+        "ProcessMaker\\Package\\Parssconfig\\Providers\\PackageServiceProvider"
       ]
     }
   },
