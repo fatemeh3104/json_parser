@@ -18,6 +18,7 @@ class ValidationItems
 {
     public function handle($request, Closure $next)
     {
+        dd(111111111111111111111111110);
         $task = $request->task;
         $screenVersion = $task->getScreenVersion();
         $task->screen = $screenVersion ? $screenVersion->toArray() : null;
