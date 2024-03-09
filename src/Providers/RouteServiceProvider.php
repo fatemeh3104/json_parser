@@ -1,6 +1,6 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Providers;
+namespace ProcessMaker\Package\Utils\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;

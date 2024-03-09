@@ -1,9 +1,9 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Helppers;
+namespace ProcessMaker\Package\Utils\Helppers;
 
-use ProcessMaker\Package\Parssconfig\Models\ItemsValidation;
-use ProcessMaker\Package\Parssconfig\Models\ScreenItems;
+use ProcessMaker\Package\Utils\Models\ItemsValidation;
+use ProcessMaker\Package\Utils\Models\ScreenItems;
 
 
 class Parser

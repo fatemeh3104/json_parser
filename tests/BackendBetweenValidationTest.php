@@ -1,10 +1,8 @@
 <?php
 
-namespace Tests\Parssconfig;
+namespace Tests\Utils;
 
-use Database\Factories\ProcessMaker\Models\ProcessFactory;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use Illuminate\Support\Str;
 use ProcessMaker\Models\Process;
 use ProcessMaker\Models\ProcessRequest;
@@ -12,15 +10,8 @@ use ProcessMaker\Models\ProcessRequestToken;
 use ProcessMaker\Models\Screen;
 use ProcessMaker\Models\ScreenVersion;
 use ProcessMaker\Models\User;
-use ProcessMaker\Package\Parssconfig\Helppers\Parser;
-use ProcessMaker\Package\Parssconfig\Http\Middleware\ValidationItems;
-use ProcessMaker\Package\Parssconfig\Models\ItemsValidation;
-use ProcessMaker\Package\Parssconfig\Models\ScreenItems;
-use SplFileInfo;
 use Tests\TestCase;
 use Illuminate\Support\Facades\File;
-
-use Faker\Factory as FakerFactory;
 
 class BackendBetweenValidationTest extends TestCase
 {

@@ -1,10 +1,10 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Patterns\Strategies;
+namespace ProcessMaker\Package\Utils\Patterns\Strategies;
 
 
 use Illuminate\Support\Arr;
-use processmaker\parssconfig\Patterns\Strategies\ValidationStrategy;
+use processmaker\utils\Patterns\Strategies\ValidationStrategy;
 
 class BetweenValidation implements ValidationStrategy
 {

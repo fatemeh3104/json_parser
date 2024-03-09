@@ -1,14 +1,14 @@
 <?php
 
-namespace processmaker\parssconfig\Http\Controllers;
+namespace processmaker\utils\Http\Controllers;
 
 use Beta\Microsoft\Graph\Model\Package;
 use Illuminate\Http\Request;
 use Mockery\Exception;
 use ProcessMaker\Models\Screen;
-use ProcessMaker\Package\Parssconfig\Helppers\Parser;
-use ProcessMaker\Package\Parssconfig\Models\ItemsValidation;
-use ProcessMaker\Package\Parssconfig\Models\ScreenItems;
+use ProcessMaker\Package\Utils\Helppers\Parser;
+use ProcessMaker\Package\Utils\Models\ItemsValidation;
+use ProcessMaker\Package\Utils\Models\ScreenItems;
 
 class ParserConfigController
 {

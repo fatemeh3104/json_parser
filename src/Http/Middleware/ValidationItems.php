@@ -1,20 +1,20 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Http\Middleware;
+namespace ProcessMaker\Package\Utils\Http\Middleware;
 
 use AWS\CRT\Log;
 use Closure;
 use Illuminate\Routing\Route;
 use ProcessMaker\Models\FormalExpression;
 use ProcessMaker\Models\ProcessRequestToken;
-use ProcessMaker\Package\Parssconfig\Helppers\Parser;
-use ProcessMaker\Package\Parssconfig\Models\ItemsValidation;
-use ProcessMaker\Package\Parssconfig\Models\ScreenItems;
-use ProcessMaker\Package\Parssconfig\Patterns\Strategies\AlphaValidation;
-use ProcessMaker\Package\Parssconfig\Patterns\Strategies\BetweenValidation;
-use ProcessMaker\Package\Parssconfig\Patterns\Strategies\MaxValidation;
-use ProcessMaker\Package\Parssconfig\Patterns\Strategies\MinValidation;
-use processmaker\parssconfig\Patterns\Strategies\RequiredValidation;
+use ProcessMaker\Package\Utils\Helppers\Parser;
+use ProcessMaker\Package\Utils\Models\ItemsValidation;
+use ProcessMaker\Package\Utils\Models\ScreenItems;
+use ProcessMaker\Package\Utils\Patterns\Strategies\AlphaValidation;
+use ProcessMaker\Package\Utils\Patterns\Strategies\BetweenValidation;
+use ProcessMaker\Package\Utils\Patterns\Strategies\MaxValidation;
+use ProcessMaker\Package\Utils\Patterns\Strategies\MinValidation;
+use processmaker\utils\Patterns\Strategies\RequiredValidation;
 use ProcessMaker\WebServices\ExpressionEvaluator;
 
 class ValidationItems

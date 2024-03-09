@@ -1,26 +1,43 @@
-# Processmaker Parssconfig
-This package provides the necessary base code to start the developing a package in ProcessMaker 4.
 
-## Development
-If you need to create a new ProcessMaker package run the following commands:
+# Processmaker Utils 
 
-```
-git clone https://github.com/ProcessMaker/parssconfig.git
-cd parssconfig
-php rename-project.php parssconfig
-composer install
-npm install
-npm run dev
-```
+This package includes functions that perform useful tasks related to managing forms and their data in ProcessMaker 4.
+
+## Features
+1. **Parsing config fields of form screens:**
+    - Provides a process to parse config fields related to form screens in ProcessMaker 4.
+
+2. **Storing items within screens:**
+    - This package is capable of storing items related to screens in the database.
+
+3. **Storing validations for each item in the database:**
+    - Stores validations for each item in the database accurately.
+
+4. **Validating items on the backend:**
+    - The `utils` package can validate items on the backend when a request is sent from the frontend.
 
 ## Installation
-* Use `composer require processmaker/parssconfig` to install the package.
-* Use `php artisan parssconfig:install` to install generate the dependencies.
+To install this package, use the following commands:
 
-## Navigation and testing
-* Navigate to administration tab in your ProcessMaker 4
-* Select `Skeleton Package` from the administrative sidebar
+* Use `composer require processmaker/utils` to install the package.
+* Use `php artisan utils:install` to install generate the dependencies.
+
+
+For initial installation and configuring screens, items, and validations, you can use the following command:
+
+```
+php artisan utils:install --first
+```
 
 ## Uninstall
-* Use `php artisan parssconfig:uninstall` to uninstall the package
-* Use `composer remove processmaker/parssconfig` to remove the package completely
+To uninstall the package, use the following commands:
+
+```
+php artisan utils:uninstall
+composer remove processmaker/utils
+```
+
+These commands allow you to completely remove the package.
+
+---
+

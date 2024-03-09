@@ -1,6 +1,6 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Models;
+namespace ProcessMaker\Package\Utils\Models;
 
 use ProcessMaker\Models\ProcessMakerModel;
 

@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use ProcessMaker\Http\Controllers\Api\ScreenController;
 use ProcessMaker\Http\Controllers\Api\TaskController;
-use ProcessMaker\Package\Parssconfig\Http\Controllers\ParssconfigController;
-use processmaker\parssconfig\Http\Controllers\ParserConfigController;
+use ProcessMaker\Package\Utils\Http\Controllers\UtilsController;
+use processmaker\utils\Http\Controllers\ParserConfigController;
 
 Route::group([], function () {
     Route::get('/ParserConfig ', [ParserConfigController::class, 'index']);

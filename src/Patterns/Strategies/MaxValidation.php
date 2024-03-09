@@ -1,9 +1,9 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Patterns\Strategies;
+namespace ProcessMaker\Package\Utils\Patterns\Strategies;
 
 
-use processmaker\parssconfig\Patterns\Strategies\ValidationStrategy;
+use processmaker\utils\Patterns\Strategies\ValidationStrategy;
 
 class MaxValidation implements ValidationStrategy
 {

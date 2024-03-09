@@ -1,6 +1,6 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Models;
+namespace ProcessMaker\Package\Utils\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use ProcessMaker\Models\ProcessMakerModel;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Parssconfig;
+namespace Tests\Utils;
 
 use Database\Factories\ProcessMaker\Models\ProcessFactory;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -12,10 +12,10 @@ use ProcessMaker\Models\ProcessRequestToken;
 use ProcessMaker\Models\Screen;
 use ProcessMaker\Models\ScreenVersion;
 use ProcessMaker\Models\User;
-use ProcessMaker\Package\Parssconfig\Helppers\Parser;
-use ProcessMaker\Package\Parssconfig\Http\Middleware\ValidationItems;
-use ProcessMaker\Package\Parssconfig\Models\ItemsValidation;
-use ProcessMaker\Package\Parssconfig\Models\ScreenItems;
+use ProcessMaker\Package\Utils\Helppers\Parser;
+use ProcessMaker\Package\Utils\Http\Middleware\ValidationItems;
+use ProcessMaker\Package\Utils\Models\ItemsValidation;
+use ProcessMaker\Package\Utils\Models\ScreenItems;
 use SplFileInfo;
 use Tests\TestCase;
 use Illuminate\Support\Facades\File;

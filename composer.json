@@ -1,6 +1,6 @@
 {
-  "name": "processmaker/parssconfig",
-  "friendly_name": "Parssconfig",
+  "name": "processmaker/utils",
+  "friendly_name": "Utils",
   "description": "Package skeleton to develop a package for ProcessMaker 4",
   "license": "AGPL-3.0-or-later",
   "version": "0.0.2",
@@ -13,7 +13,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "ProcessMaker\\Package\\Parssconfig\\": "src",
+      "ProcessMaker\\Package\\Utils\\": "src",
       "Tests\\": "tests/",
       "Factories\\": "database/Factories"
     }
@@ -21,7 +21,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "ProcessMaker\\Package\\Parssconfig\\Providers\\PackageServiceProvider"
+        "ProcessMaker\\Package\\Utils\\Providers\\PackageServiceProvider"
       ]
     }
   },

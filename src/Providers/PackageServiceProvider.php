@@ -1,16 +1,16 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Providers;
+namespace ProcessMaker\Package\Utils\Providers;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use ProcessMaker\Package\Packages\Events\PackageEvent;
-use ProcessMaker\Package\Parssconfig\Http\Middleware\AddToMenus;
-use ProcessMaker\Package\Parssconfig\Http\Middleware\ValidationItems;
-use ProcessMaker\Package\Parssconfig\Http\Middleware\ValidationUpdate;
-use ProcessMaker\Package\Parssconfig\Listeners\PackageListener;
-use ProcessMaker\Package\Parssconfig\Console\Commands\Install;
-use ProcessMaker\Package\Parssconfig\Console\Commands\Uninstall;
+use ProcessMaker\Package\Utils\Http\Middleware\AddToMenus;
+use ProcessMaker\Package\Utils\Http\Middleware\ValidationItems;
+use ProcessMaker\Package\Utils\Http\Middleware\ValidationUpdate;
+use ProcessMaker\Package\Utils\Listeners\PackageListener;
+use ProcessMaker\Package\Utils\Console\Commands\Install;
+use ProcessMaker\Package\Utils\Console\Commands\Uninstall;
 
 class PackageServiceProvider extends ServiceProvider
 {
@@ -47,8 +47,8 @@ class PackageServiceProvider extends ServiceProvider
         app('router')->aliasMiddleware('ValidationUpdate', ValidationUpdate::class);
 
         $this->publishes([
-            __DIR__ . '/../public' => public_path('vendor/processmaker/packages/parssconfig'),
-        ], 'parssconfig');
+            __DIR__ . '/../public' => public_path('vendor/processmaker/packages/utils'),
+        ], 'utils');
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
         $this->app['events']->listen(PackageEvent::class, PackageListener::class);

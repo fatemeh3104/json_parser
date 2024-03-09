@@ -1,11 +1,11 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Console\Commands;
+namespace ProcessMaker\Package\Utils\Console\Commands;
 
 use Artisan;
 use ProcessMaker\Console\PackageInstallCommand;
 use ProcessMaker\Models\Screen;
-use ProcessMaker\Package\Parssconfig\Helppers\Parser;
+use ProcessMaker\Package\Utils\Helppers\Parser;
 
 class Install extends PackageInstallCommand
 {
@@ -14,14 +14,14 @@ class Install extends PackageInstallCommand
      *
      * @var string
      */
-    protected $signature = 'parssconfig:install{--first : Install for the first time}';
+    protected $signature = 'utils:install{--first : Install for the first time}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Install Parssconfig Package';
+    protected $description = 'Install Utils Package';
 
     /**
      * Publish assets
@@ -31,7 +31,7 @@ class Install extends PackageInstallCommand
     {
         $this->info('Publishing assets');
         Artisan::call('vendor:publish', [
-            '--tag' => 'parssconfig',
+            '--tag' => 'utils',
             '--force' => true,
         ]);
     }
@@ -76,7 +76,7 @@ class Install extends PackageInstallCommand
             }
         }
         parent::handle();
-        $this->info('Pars config has been installed');
+        $this->info('Utils has been installed');
 
     }
 

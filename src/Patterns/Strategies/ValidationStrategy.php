@@ -1,6 +1,6 @@
 <?php
 
-namespace processmaker\parssconfig\Patterns\Strategies;
+namespace processmaker\utils\Patterns\Strategies;
 
 interface ValidationStrategy
 {

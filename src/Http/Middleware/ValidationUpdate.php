@@ -1,13 +1,13 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Http\Middleware;
+namespace ProcessMaker\Package\Utils\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Log;
 use ProcessMaker\Http\Resources\Screen;
-use ProcessMaker\Package\Parssconfig\Helppers\Parser;
-use ProcessMaker\Package\Parssconfig\Models\ItemsValidation;
-use ProcessMaker\Package\Parssconfig\Models\ScreenItems;
+use ProcessMaker\Package\Utils\Helppers\Parser;
+use ProcessMaker\Package\Utils\Models\ItemsValidation;
+use ProcessMaker\Package\Utils\Models\ScreenItems;
 
 
 class ValidationUpdate
