@@ -2,8 +2,11 @@
 
 namespace ProcessMaker\Package\Parssconfig\Http\Middleware;
 
+use AWS\CRT\Log;
 use Closure;
+use Illuminate\Routing\Route;
 use ProcessMaker\Models\FormalExpression;
+use ProcessMaker\Models\ProcessRequestToken;
 use ProcessMaker\Package\Parssconfig\Helppers\Parser;
 use ProcessMaker\Package\Parssconfig\Models\ItemsValidation;
 use ProcessMaker\Package\Parssconfig\Models\ScreenItems;
@@ -18,7 +21,6 @@ class ValidationItems
 {
     public function handle($request, Closure $next)
     {
-        dd(111111111);
         //find screen from task
         $task = $request->task;
         $screenVersion = $task->getScreenVersion();

@@ -35,30 +35,21 @@ class PackageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        //Register commands
         $this->commands([
             Install::class,
             Uninstall::class,
         ]);
         $this->app->register(RouteServiceProvider::class);
-        //Register commands
-
-//        Route::middleware('web')
-//            ->group(__DIR__ . '/../routes/web.php');
-//
-//
-//        Route::middleware('api')
-//            ->prefix('api/1.0')
-//            ->group(__DIR__ . '/../routes/api.php');
 
 //        $kernel->pushMiddleware(ValidationItems::class);
         app('router')->aliasMiddleware('ValidationItems', ValidationItems::class);
         app('router')->aliasMiddleware('ValidationUpdate', ValidationUpdate::class);
-        $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'parssconfig');
 
         $this->publishes([
             __DIR__ . '/../public' => public_path('vendor/processmaker/packages/parssconfig'),
         ], 'parssconfig');
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
         $this->app['events']->listen(PackageEvent::class, PackageListener::class);
 
