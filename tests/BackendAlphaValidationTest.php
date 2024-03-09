@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\File;
 
 use Faker\Factory as FakerFactory;
 
-class BackendTaskValidationTest extends TestCase
+class BackendAlphaValidationTest extends TestCase
 {
 
     public function setUp(): void
@@ -31,9 +31,9 @@ class BackendTaskValidationTest extends TestCase
 
     }
 
-    public function test_backend_validation_for_form_screen()
+    public function test_alpha_validation()
     {
-        $json = __DIR__ . "/fixtures/Json/A-Screen.json";
+        $json = __DIR__ . "/fixtures/Json/AlphaScreen.json";
         $user = User::factory()->create(['is_administrator' => true]);
         $this->actingAs($user, 'api');
         $result = [];
@@ -77,15 +77,13 @@ class BackendTaskValidationTest extends TestCase
             "data" => [
                 "_user" => $user->getAttributes(),
                 "_request" => $process_request->getAttributes(),
-                "b_form_component_1" => ['lll'],
-                "form_text_area_1" => 12
+                "AlphaTextarea" => 222
             ]
         ];
         $response = $this->put('http://localhost:8080/api/1.0/tasks/1', $x);
-        $response->assertStatus(200);
+        $response->assertStatus(422);
 
 
     }
-
 
 }

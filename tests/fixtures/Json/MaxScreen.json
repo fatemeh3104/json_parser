@@ -1,0 +1,303 @@
+{
+  "type": "screen_package",
+  "version": "2",
+  "screens": [
+    {
+      "id": 6,
+      "uuid": "9b859c59-919a-4a78-a655-20bbdaf60707",
+      "screen_category_id": "1",
+      "title": "MaxScreen",
+      "description": "description",
+      "type": "FORM",
+      "config": [
+        {
+          "name": "MaxScreen",
+          "items": [
+            {
+              "label": "Textarea",
+              "config": {
+                "icon": "fas fa-paragraph",
+                "name": "MaxTextarea",
+                "rows": 2,
+                "label": "New Textarea",
+                "helper": null,
+                "currency": {
+                  "code": "USD",
+                  "name": "US Dollar",
+                  "format": "#,###.##",
+                  "symbol": "$"
+                },
+                "readonly": false,
+                "richtext": false,
+                "validation": [
+                  {
+                    "field": "max:",
+                    "value": "max:10",
+                    "helper": null,
+                    "configs": [
+                      {
+                        "type": "FormInput",
+                        "label": "Max Input",
+                        "value": "10",
+                        "helper": "Validate that an attribute is no greater than a given length.",
+                        "validation": "required|integer"
+                      }
+                    ],
+                    "content": "Max Length",
+                    "visible": false
+                  }
+                ],
+                "placeholder": null
+              },
+              "component": "FormTextArea",
+              "inspector": [
+                {
+                  "type": "FormInput",
+                  "field": "name",
+                  "config": {
+                    "name": "Variable Name",
+                    "label": "Variable Name",
+                    "helper": "A variable name is a symbolic name to reference information.",
+                    "validation": "regex:\/^([a-zA-Z]([a-zA-Z0-9_]?)+\\.?)+(?<!\\.)$\/|required|not_in:null,break,case,catch,continue,debugger,default,delete,do,else,finally,for,function,if,in,instanceof,new,return,switch,this,throw,try,typeof,var,void,while,with,class,const,enum,export,extends,import,super,true,false"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "label",
+                  "config": {
+                    "label": "Label",
+                    "helper": "The label describes the field's name"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "placeholder",
+                  "config": {
+                    "label": "Placeholder Text",
+                    "helper": "The placeholder is what is shown in the field when no value is provided yet"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "helper",
+                  "config": {
+                    "label": "Helper Text",
+                    "helper": "Help text is meant to provide additional guidance on the field's value"
+                  }
+                },
+                {
+                  "type": "FormCheckbox",
+                  "field": "richtext",
+                  "config": {
+                    "label": "Rich Text",
+                    "helper": null
+                  }
+                },
+                {
+                  "type": "ValidationSelect",
+                  "field": "validation",
+                  "config": {
+                    "label": "Validation Rules",
+                    "helper": "The validation rules needed for this field"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "rows",
+                  "config": {
+                    "label": "Rows",
+                    "helper": "The number of rows to provide for input",
+                    "validation": "integer"
+                  }
+                },
+                {
+                  "type": "FormCheckbox",
+                  "field": "readonly",
+                  "config": {
+                    "label": "Read Only",
+                    "helper": null
+                  }
+                },
+                {
+                  "type": "ColorSelect",
+                  "field": "color",
+                  "config": {
+                    "label": "Text Color",
+                    "helper": "Set the element's text color",
+                    "options": [
+                      {
+                        "value": "text-primary",
+                        "content": "primary"
+                      },
+                      {
+                        "value": "text-secondary",
+                        "content": "secondary"
+                      },
+                      {
+                        "value": "text-success",
+                        "content": "success"
+                      },
+                      {
+                        "value": "text-danger",
+                        "content": "danger"
+                      },
+                      {
+                        "value": "text-warning",
+                        "content": "warning"
+                      },
+                      {
+                        "value": "text-info",
+                        "content": "info"
+                      },
+                      {
+                        "value": "text-light",
+                        "content": "light"
+                      },
+                      {
+                        "value": "text-dark",
+                        "content": "dark"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "ColorSelect",
+                  "field": "bgcolor",
+                  "config": {
+                    "label": "Background Color",
+                    "helper": "Set the element's background color",
+                    "options": [
+                      {
+                        "value": "alert alert-primary",
+                        "content": "primary"
+                      },
+                      {
+                        "value": "alert alert-secondary",
+                        "content": "secondary"
+                      },
+                      {
+                        "value": "alert alert-success",
+                        "content": "success"
+                      },
+                      {
+                        "value": "alert alert-danger",
+                        "content": "danger"
+                      },
+                      {
+                        "value": "alert alert-warning",
+                        "content": "warning"
+                      },
+                      {
+                        "value": "alert alert-info",
+                        "content": "info"
+                      },
+                      {
+                        "value": "alert alert-light",
+                        "content": "light"
+                      },
+                      {
+                        "value": "alert alert-dark",
+                        "content": "dark"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "default-value-editor",
+                  "field": "defaultValue",
+                  "config": {
+                    "label": "Default Value",
+                    "helper": "The default value is pre populated using the existing request data. This feature will allow you to modify the value displayed on screen load if needed."
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "conditionalHide",
+                  "config": {
+                    "label": "Visibility Rule",
+                    "helper": "This control is hidden until this expression is true"
+                  }
+                },
+                {
+                  "type": "DeviceVisibility",
+                  "field": "deviceVisibility",
+                  "config": {
+                    "label": "Device Visibility",
+                    "helper": "This control is hidden until this expression is true"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "customFormatter",
+                  "config": {
+                    "label": "Custom Format String",
+                    "helper": "Use the Mask Pattern format <br> Date ##\/##\/#### <br> SSN ###-##-#### <br> Phone (###) ###-####",
+                    "validation": null
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "customCssSelector",
+                  "config": {
+                    "label": "CSS Selector Name",
+                    "helper": "Use this in your custom css rules",
+                    "validation": "regex: [-?[_a-zA-Z]+[_-a-zA-Z0-9]*]"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "ariaLabel",
+                  "config": {
+                    "label": "Aria Label",
+                    "helper": "Attribute designed to help assistive technology (e.g. screen readers) attach a label"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "tabindex",
+                  "config": {
+                    "label": "Tab Order",
+                    "helper": "Order in which a user will move focus from one control to another by pressing the Tab key",
+                    "validation": "regex: [0-9]*"
+                  }
+                }
+              ],
+              "editor-control": "FormTextArea",
+              "editor-component": "FormTextArea"
+            }
+          ]
+        }
+      ],
+      "computed": [],
+      "custom_css": null,
+      "created_at": "2024-03-09T10:52:40+00:00",
+      "updated_at": "2024-03-09T10:53:45+00:00",
+      "status": "ACTIVE",
+      "key": null,
+      "watchers": [],
+      "translations": null,
+      "is_template": 0,
+      "projects": "[]",
+      "categories": [
+        {
+          "id": 1,
+          "uuid": "9b79cd2e-121d-4689-ab00-4c2d2409edd5",
+          "name": "Uncategorized",
+          "status": "ACTIVE",
+          "is_system": 0,
+          "created_at": "2024-03-03T13:59:16+00:00",
+          "updated_at": "2024-03-03T13:59:16+00:00",
+          "pivot": {
+            "category_type": "ProcessMaker\\Models\\ScreenCategory",
+            "assignable_id": 6,
+            "category_id": 1
+          }
+        }
+      ]
+    }
+  ],
+  "screen_categories": [],
+  "scripts": [],
+  "items_count" : 1,
+  "validation_count" : 1
+}

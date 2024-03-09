@@ -3,38 +3,29 @@
   "version": "2",
   "screens": [
     {
-      "id": 2,
-      "uuid": "9b79ceeb-6308-4f84-9e07-84eff4af3dda",
+      "id": 5,
+      "uuid": "9b8597b4-7928-4ac3-9dfa-e40bbcecdc4d",
       "screen_category_id": "1",
-      "title": "A Screen",
-      "description": "Description",
+      "title": "RequiredScreen",
+      "description": "Required Description",
       "type": "FORM",
       "config": [
         {
-          "name": "A Screen",
+          "name": "RequiredScreen",
           "items": [
             {
-              "label": "Bootstrap Component",
+              "label": "Checkbox",
               "config": {
-                "icon": "fab fa-bootstrap",
-                "name": "b_form_component_1",
-                "label": "New Bootstrap Component",
-                "validation": [
-                  {
-                    "value": "required",
-                    "helper": "Checks if the length of the String representation of the value is >",
-                    "content": "Required"
-                  },
-                  {
-                    "value": "alpha",
-                    "helper": "The field under validation must be entirely alphabetic characters.",
-                    "content": "Alpha"
-                  }
-                ],
-                "bootstrapConfig": "{}",
-                "bootstrapComponent": "b-form-tags"
+                "icon": "fas fa-check-square",
+                "name": "form_checkbox_1",
+                "label": "New Checkbox",
+                "helper": null,
+                "toggle": false,
+                "disabled": false,
+                "validation": [],
+                "initiallyChecked": false
               },
-              "component": "BFormComponent",
+              "component": "FormCheckbox",
               "inspector": [
                 {
                   "type": "FormInput",
@@ -55,53 +46,11 @@
                   }
                 },
                 {
-                  "type": "FormMultiselect",
-                  "field": "bootstrapComponent",
+                  "type": "FormInput",
+                  "field": "helper",
                   "config": {
-                    "icon": "fas",
-                    "label": "Bootstrap vue component",
-                    "helper": null,
-                    "options": [
-                      {
-                        "value": "b-embed",
-                        "content": "Embed"
-                      },
-                      {
-                        "value": "b-img",
-                        "content": "Image"
-                      },
-                      {
-                        "value": "b-form-rating",
-                        "content": "Form Rating"
-                      },
-                      {
-                        "value": "b-form-spinbutton",
-                        "content": "Form Spinbutton"
-                      },
-                      {
-                        "value": "b-form-tags",
-                        "content": "Form Tags"
-                      },
-                      {
-                        "value": "b-form-timepicker",
-                        "content": "Form Timepicker"
-                      },
-                      {
-                        "value": "b-table",
-                        "content": "Table"
-                      }
-                    ],
-                    "validation": "required"
-                  }
-                },
-                {
-                  "type": "FormTextArea",
-                  "field": "bootstrapConfig",
-                  "config": {
-                    "rows": 5,
-                    "label": "Config",
-                    "value": "{}",
-                    "helper": "Properties in JSON format. See https:\/\/bootstrap-vue.org\/docs\/components"
+                    "label": "Helper Text",
+                    "helper": "Help text is meant to provide additional guidance on the field's value"
                   }
                 },
                 {
@@ -110,6 +59,114 @@
                   "config": {
                     "label": "Validation Rules",
                     "helper": "The validation rules needed for this field"
+                  }
+                },
+                {
+                  "type": "FormCheckbox",
+                  "field": "initiallyChecked",
+                  "config": {
+                    "label": "Checked by default",
+                    "helper": "Should the checkbox be checked by default"
+                  }
+                },
+                {
+                  "type": "ColorSelect",
+                  "field": "color",
+                  "config": {
+                    "label": "Text Color",
+                    "helper": "Set the element's text color",
+                    "options": [
+                      {
+                        "value": "text-primary",
+                        "content": "primary"
+                      },
+                      {
+                        "value": "text-secondary",
+                        "content": "secondary"
+                      },
+                      {
+                        "value": "text-success",
+                        "content": "success"
+                      },
+                      {
+                        "value": "text-danger",
+                        "content": "danger"
+                      },
+                      {
+                        "value": "text-warning",
+                        "content": "warning"
+                      },
+                      {
+                        "value": "text-info",
+                        "content": "info"
+                      },
+                      {
+                        "value": "text-light",
+                        "content": "light"
+                      },
+                      {
+                        "value": "text-dark",
+                        "content": "dark"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "ColorSelect",
+                  "field": "bgcolor",
+                  "config": {
+                    "label": "Background Color",
+                    "helper": "Set the element's background color",
+                    "options": [
+                      {
+                        "value": "alert alert-primary",
+                        "content": "primary"
+                      },
+                      {
+                        "value": "alert alert-secondary",
+                        "content": "secondary"
+                      },
+                      {
+                        "value": "alert alert-success",
+                        "content": "success"
+                      },
+                      {
+                        "value": "alert alert-danger",
+                        "content": "danger"
+                      },
+                      {
+                        "value": "alert alert-warning",
+                        "content": "warning"
+                      },
+                      {
+                        "value": "alert alert-info",
+                        "content": "info"
+                      },
+                      {
+                        "value": "alert alert-light",
+                        "content": "light"
+                      },
+                      {
+                        "value": "alert alert-dark",
+                        "content": "dark"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "FormCheckbox",
+                  "field": "toggle",
+                  "config": {
+                    "label": "Toggle Style",
+                    "helper": null
+                  }
+                },
+                {
+                  "type": "FormCheckbox",
+                  "field": "disabled",
+                  "config": {
+                    "label": "Read Only",
+                    "helper": null
                   }
                 },
                 {
@@ -164,16 +221,256 @@
                   }
                 }
               ],
-              "editor-control": "BFormComponent",
-              "editor-component": "BFormComponent"
+              "editor-control": "FormCheckbox",
+              "editor-component": "FormCheckbox"
+            },
+            {
+              "label": "Select List",
+              "config": {
+                "icon": "fas fa-angle-double-down",
+                "name": "form_select_list_1",
+                "label": "New Select List",
+                "helper": null,
+                "options": {
+                  "key": "value",
+                  "value": "content",
+                  "dataName": "response",
+                  "jsonData": "[]",
+                  "renderAs": "dropdown",
+                  "editIndex": null,
+                  "pmqlQuery": null,
+                  "dataSource": "provideData",
+                  "optionsList": [],
+                  "removeIndex": null,
+                  "showRenderAs": true,
+                  "showJsonEditor": false,
+                  "showOptionCard": false,
+                  "selectedOptions": [],
+                  "allowMultiSelect": false,
+                  "showRemoveWarning": false,
+                  "valueTypeReturned": "single"
+                },
+                "readonly": false,
+                "validation": [],
+                "placeholder": null,
+                "rootElement": "response",
+                "dataSourceUrl": null,
+                "dataSourceEndpoint": null
+              },
+              "component": "FormSelectList",
+              "inspector": [
+                {
+                  "type": "FormInput",
+                  "field": "name",
+                  "config": {
+                    "name": "Variable Name",
+                    "label": "Variable Name",
+                    "helper": "A variable name is a symbolic name to reference information.",
+                    "validation": "regex:\/^([a-zA-Z]([a-zA-Z0-9_]?)+\\.?)+(?<!\\.)$\/|required|not_in:null,break,case,catch,continue,debugger,default,delete,do,else,finally,for,function,if,in,instanceof,new,return,switch,this,throw,try,typeof,var,void,while,with,class,const,enum,export,extends,import,super,true,false"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "label",
+                  "config": {
+                    "label": "Label",
+                    "helper": "The label describes the field's name"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "placeholder",
+                  "config": {
+                    "label": "Placeholder Text",
+                    "helper": "The placeholder is what is shown in the field when no value is provided yet"
+                  }
+                },
+                {
+                  "type": "ValidationSelect",
+                  "field": "validation",
+                  "config": {
+                    "label": "Validation Rules",
+                    "helper": "The validation rules needed for this field"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "helper",
+                  "config": {
+                    "label": "Helper Text",
+                    "helper": "Help text is meant to provide additional guidance on the field's value"
+                  }
+                },
+                {
+                  "type": "OptionsList",
+                  "field": "options",
+                  "config": {
+                    "label": null,
+                    "helper": null
+                  }
+                },
+                {
+                  "type": "ColorSelect",
+                  "field": "color",
+                  "config": {
+                    "label": "Text Color",
+                    "helper": "Set the element's text color",
+                    "options": [
+                      {
+                        "value": "text-primary",
+                        "content": "primary"
+                      },
+                      {
+                        "value": "text-secondary",
+                        "content": "secondary"
+                      },
+                      {
+                        "value": "text-success",
+                        "content": "success"
+                      },
+                      {
+                        "value": "text-danger",
+                        "content": "danger"
+                      },
+                      {
+                        "value": "text-warning",
+                        "content": "warning"
+                      },
+                      {
+                        "value": "text-info",
+                        "content": "info"
+                      },
+                      {
+                        "value": "text-light",
+                        "content": "light"
+                      },
+                      {
+                        "value": "text-dark",
+                        "content": "dark"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "ColorSelect",
+                  "field": "bgcolor",
+                  "config": {
+                    "label": "Background Color",
+                    "helper": "Set the element's background color",
+                    "options": [
+                      {
+                        "value": "alert alert-primary",
+                        "content": "primary"
+                      },
+                      {
+                        "value": "alert alert-secondary",
+                        "content": "secondary"
+                      },
+                      {
+                        "value": "alert alert-success",
+                        "content": "success"
+                      },
+                      {
+                        "value": "alert alert-danger",
+                        "content": "danger"
+                      },
+                      {
+                        "value": "alert alert-warning",
+                        "content": "warning"
+                      },
+                      {
+                        "value": "alert alert-info",
+                        "content": "info"
+                      },
+                      {
+                        "value": "alert alert-light",
+                        "content": "light"
+                      },
+                      {
+                        "value": "alert alert-dark",
+                        "content": "dark"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "default-value-editor",
+                  "field": "defaultValue",
+                  "config": {
+                    "label": "Default Value",
+                    "helper": "The default value is pre populated using the existing request data. This feature will allow you to modify the value displayed on screen load if needed."
+                  }
+                },
+                {
+                  "type": "FormCheckbox",
+                  "field": "readonly",
+                  "config": {
+                    "label": "Read Only",
+                    "helper": null
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "conditionalHide",
+                  "config": {
+                    "label": "Visibility Rule",
+                    "helper": "This control is hidden until this expression is true"
+                  }
+                },
+                {
+                  "type": "DeviceVisibility",
+                  "field": "deviceVisibility",
+                  "config": {
+                    "label": "Device Visibility",
+                    "helper": "This control is hidden until this expression is true"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "customFormatter",
+                  "config": {
+                    "label": "Custom Format String",
+                    "helper": "Use the Mask Pattern format <br> Date ##\/##\/#### <br> SSN ###-##-#### <br> Phone (###) ###-####",
+                    "validation": null
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "customCssSelector",
+                  "config": {
+                    "label": "CSS Selector Name",
+                    "helper": "Use this in your custom css rules",
+                    "validation": "regex: [-?[_a-zA-Z]+[_-a-zA-Z0-9]*]"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "ariaLabel",
+                  "config": {
+                    "label": "Aria Label",
+                    "helper": "Attribute designed to help assistive technology (e.g. screen readers) attach a label"
+                  }
+                },
+                {
+                  "type": "FormInput",
+                  "field": "tabindex",
+                  "config": {
+                    "label": "Tab Order",
+                    "helper": "Order in which a user will move focus from one control to another by pressing the Tab key",
+                    "validation": "regex: [0-9]*"
+                  }
+                }
+              ],
+              "editor-control": "FormSelectList",
+              "editor-component": "FormSelectList"
             },
             {
               "label": "Textarea",
               "config": {
                 "icon": "fas fa-paragraph",
-                "name": "form_text_area_1",
+                "name": "RequiredText",
                 "rows": 2,
-                "label": "New Textarea",
+                "label": null,
                 "helper": null,
                 "currency": {
                   "code": "USD",
@@ -184,29 +481,6 @@
                 "readonly": false,
                 "richtext": false,
                 "validation": [
-                  {
-                    "field": "between:",
-                    "value": "between:5,15",
-                    "helper": "The field under validation must have a size between the given min and max.",
-                    "configs": [
-                      {
-                        "type": "FormInput",
-                        "label": "Min",
-                        "value": "5",
-                        "helper": null,
-                        "validation": "required|integer"
-                      },
-                      {
-                        "type": "FormInput",
-                        "label": "Max",
-                        "value": "15",
-                        "helper": null,
-                        "validation": "required|integer"
-                      }
-                    ],
-                    "content": "Between Min & Max",
-                    "visible": false
-                  },
                   {
                     "value": "required",
                     "helper": "Checks if the length of the String representation of the value is >",
@@ -519,7 +793,8 @@
                   },
                   "field": "tooltip",
                   "config": {
-                    "label": "Tooltip"
+                    "label": "Tooltip",
+                    "helper": null
                   }
                 },
                 {
@@ -636,8 +911,8 @@
       ],
       "computed": [],
       "custom_css": null,
-      "created_at": "2024-03-03T14:04:08+00:00",
-      "updated_at": "2024-03-03T14:28:33+00:00",
+      "created_at": "2024-03-09T10:39:41+00:00",
+      "updated_at": "2024-03-09T10:45:30+00:00",
       "status": "ACTIVE",
       "key": null,
       "watchers": [],
@@ -655,7 +930,7 @@
           "updated_at": "2024-03-03T13:59:16+00:00",
           "pivot": {
             "category_type": "ProcessMaker\\Models\\ScreenCategory",
-            "assignable_id": 2,
+            "assignable_id": 5,
             "category_id": 1
           }
         }
@@ -664,6 +939,7 @@
   ],
   "screen_categories": [],
   "scripts": [],
-  "items_count" : 3,
-  "validation_count" : 3
+  "items_count" : 4,
+  "validation_count" : 1
+
 }
