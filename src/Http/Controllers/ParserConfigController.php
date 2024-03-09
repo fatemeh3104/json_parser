@@ -1,56 +1,95 @@
 <?php
 
-namespace processmaker\parssconfig\Http\Controllers;
+namespace processmaker\utils\Http\Controllers;
 
+use Beta\Microsoft\Graph\Model\Package;
 use Illuminate\Http\Request;
+use Mockery\Exception;
+use ProcessMaker\Models\Screen;
+use ProcessMaker\Package\Utils\Helppers\Parser;
+use ProcessMaker\Package\Utils\Models\ItemsValidation;
+use ProcessMaker\Package\Utils\Models\ScreenItems;
 
 class ParserConfigController
 {
     public function index(Request $request)
     {
-
+        $field = $request->get('field');
         $inputJson = $request->getContent();
         $inputArray = json_decode($inputJson, true);
         $outputArray = [];
-        $outputArray = $this->collectItemsWithLabel($inputArray['config'], []);
-
+        $parser = new Parser();
+        $outputArray = $parser->Parser($inputArray['config'], [], $field);
         return response()->json($outputArray);
     }
 
-    private function collectItemsWithLabel($items, $outputArray)
+    public function store()
     {
-        foreach ($items as $item) {
-            if (gettype($item) == "array" && !isset($item['label']) && !isset($item['items'])) {
-                foreach ($item as $i) {
-                    if (isset($i['label'])) {
-                        $outputArray[] = $i['config'];
-                    }
-                    if (isset($i['items'])) {
-                        $outputArray = $this->collectItemsWithLabel($i['items'], $outputArray);
-                    }
-                }
+        try {
+            $screens = Screen::all()->where('type', '=', 'FORM');
+            foreach ($screens as $screen) {
+                $parser = new Parser();
+                $parser->StoreItemsAndValidations($screen);
             }
-            if (isset($item['label'])) {
-                $outputArray[] = $item['config'];
-            }
-            if (isset($item['items'])) {
-                $outputArray = $this->collectItemsWithLabel($item['items'], $outputArray);
-            }
-        }
+            return response()->json('save');
 
-        return $outputArray;
+
+        } catch (\Exception $e) {
+            return $e;
+        }
     }
+
 
     public function search(Request $request, $item_name)
     {
         $inputJson = $request->getContent();
+        $field = $request->get('field');
         $inputArray = json_decode($inputJson, true);
         $outputArray = [];
-        $outputArray = $this->collectItemsWithLabel($inputArray['config'], []);
+        $parser = new Parser();
+        $outputArray = $parser->Parser($inputArray['config'], [], $field);
         foreach ($outputArray as $item) {
             if ($item['name'] == $item_name) {
                 return $item;
+            } else {
+                return response()->json('item not found');
             }
         }
     }
+
+    public function fetch($screen_id)
+    {
+        try {
+            $screen = Screen::findOrFail($screen_id);
+            $items = [];
+            $parser = new Parser();
+            $items = $parser->Parser($screen['config'], []);
+            return $items;
+        } catch (\Exception $e) {
+
+            return response()->json("not found");
+        }
+
+    }
+
+    public function all()
+    {
+        try {
+            $screens = Screen::all()->where('type', '=', 'FORM');
+            foreach ($screens as $screen) {
+                $items = [];
+                $parser = new Parser();
+                $items = $parser->Parser($screen['config'], []);
+                return $items;
+            }
+
+        } catch (\Exception) {
+            return response()->json("not found");
+        }
+
+
+    }
+
+
+
 }

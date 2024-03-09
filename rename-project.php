@@ -56,8 +56,8 @@ function dashesToCamelCase($string, $capitalizeFirstCharacter = false, $replace 
     return $str;
 }
 
-searchDirectoryFiles(getcwd() . '/', 'parssconfig', $argv[1]);
+searchDirectoryFiles(getcwd() . '/', 'utils', $argv[1]);
 
-searchDirectoryFiles(getcwd() . '/', 'Parssconfig', dashesToCamelCase($argv[1], true));
+searchDirectoryFiles(getcwd() . '/', 'Utils', dashesToCamelCase($argv[1], true));
 
-searchDirectoryFiles(getcwd() . '/', 'Parssconfig', dashesToCamelCase($argv[1], true, ' '));
+searchDirectoryFiles(getcwd() . '/', 'Utils', dashesToCamelCase($argv[1], true, ' '));

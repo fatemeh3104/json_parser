@@ -1,6 +1,6 @@
 <?php
 
-namespace ProcessMaker\Package\Parssconfig\Console\Commands;
+namespace ProcessMaker\Package\Utils\Console\Commands;
 
 use Illuminate\Console\Command;
 
@@ -11,14 +11,14 @@ class Uninstall extends Command
      *
      * @var string
      */
-    protected $signature = 'parssconfig:uninstall';
+    protected $signature = 'utils:uninstall';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Uninstall Parssconfig Package';
+    protected $description = 'Uninstall Utils Package';
 
     /**
      * Execute the console command.
@@ -27,6 +27,6 @@ class Uninstall extends Command
      */
     public function handle()
     {
-        $this->info('Parssconfig package Uninstalled');
+        $this->info('Utils package Uninstalled');
     }
 }
